@@ -10,10 +10,9 @@
    </select></p>
   <input type="text" v-model="data_alumnos.nombre" placeholder="Nombre del alumno" >
   <p><button type="submit" v-bind:disabled="!validarEntradas(data_alumnos)" > Agregar Alumno </button> </p>
-  <hr>
-  <ListaDeAlumnos /> 
 </form>
-
+  <hr>
+  <ListaDeAlumnos />
   </div>
 </template>
 
@@ -30,7 +29,8 @@ export default {
   data: function () {
     return {
       data_alumnos:{
-        created: Date.now(),
+        create: Date.now(),
+        update: Date.now(),
         nombre:'',
         clase: ''
       },
@@ -47,7 +47,8 @@ export default {
       let that = this;
       db.collection('alumnos').add({
           clase: that.data_alumnos.clase,
-          created: that.data_alumnos.created,
+          created: that.data_alumnos.create,
+          updated: that.data_alumnos.update,
           nombre: that.data_alumnos.nombre.toUpperCase()
         }).then(()=>{
           console.log("Registro agregado con éxito");
